@@ -1,4 +1,11 @@
-﻿export default [
+﻿/*
+ * @Author       : SpadesA.yanjuan9998@gmail.com
+ * @Date         : 2022-06-07 13:44:15
+ * @LastEditors  : SpadesA.yanjuan9998@gmail.com
+ * @LastEditTime : 2022-06-07 17:02:54
+ * @FilePath     : \myapp\config\routes.ts
+ */
+export default [
   {
     path: '/user',
     layout: false,
@@ -31,7 +38,8 @@
     name: 'Render',
     icon: 'smile',
     component: './Render',
-  }, {
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
