@@ -1,13 +1,17 @@
+/*
+ * @Author       : SpadesA.yanjuan9998@gmail.com
+ * @Date         : 2022-06-07 13:44:15
+ * @LastEditors  : SpadesA.yanjuan9998@gmail.com
+ * @LastEditTime : 2022-06-08 14:32:24
+ * @FilePath     : \myapp\config\config.ts
+ */
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
 import { join } from 'path';
-
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
-
 const { REACT_APP_ENV } = process.env;
-
 export default defineConfig({
   hash: true,
   antd: {},
@@ -19,14 +23,6 @@ export default defineConfig({
     locale: true,
     siderWidth: 208,
     ...defaultSettings,
-  },
-  // https://umijs.org/zh-CN/plugins/plugin-locale
-  locale: {
-    // default zh-CN
-    default: 'zh-CN',
-    antd: true,
-    // default true, when it is true, will use `navigator.language` overwrite default
-    baseNavigator: true,
   },
   dynamicImport: {
     loading: '@ant-design/pro-layout/es/PageLoading',
@@ -69,15 +65,17 @@ export default defineConfig({
       projectName: 'swagger',
     },
   ],
-  nodeModulesTransform: { type: 'none' },
+  nodeModulesTransform: {
+    type: 'none',
+  },
   //mfsu: {},
   webpack5: {},
   exportStatic: {},
   headScripts: [],
   styles: [
-    'amis/lib/themes/default.css',
-    'amis/lib/helper.css',
-    'amis/sdk/iconfont.css',
-    'amis-editor/dist/style.css'
-  ]
+    // 'amis/lib/themes/default.css',
+    // 'amis/lib/helper.css',
+    // 'amis/sdk/iconfont.css',
+    // 'amis-editor/dist/style.css'
+  ],
 });

@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-07 16:20:51
+ * @LastEditTime : 2022-06-07 17:56:39
  * @FilePath     : \myapp\src\pages\Render.tsx
  */
 import React, { useEffect, useState } from 'react';
@@ -19,6 +19,7 @@ const Render: React.FC = () => {
   const [Router, setRouter] = useState<string>(history.location.pathname);
 
   useEffect(() => {
+    console.log('Router=>', Router);
     axios
       .get('/api/admin/common/schema?router=' + Router)
       .then((res) => {
