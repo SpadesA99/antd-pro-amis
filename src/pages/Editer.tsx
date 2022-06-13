@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-07 16:50:10
+ * @LastEditTime : 2022-06-11 12:13:54
  * @FilePath     : \myapp\src\pages\Editer.tsx
  */
 import React, { useEffect, useState } from 'react';
@@ -36,31 +36,29 @@ const Editer: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <AmisEditor
-        schema={schema}
-        onSave={() => {
-          const data = { router: history.location.query.router, schema: JSON.stringify(schema) };
-          axios
-            .post('/api/admin/common/upschema', data)
-            .then((res) => {
-              console.log('res=>', res);
-              if (res.data.status != 200) {
-                openNotificationWithIcon('success', '保存失败', res.data.message);
-                return;
-              }
-              openNotificationWithIcon('success', '保存成功', '');
-              history.goBack();
-            })
-            .catch((err) => {
-              openNotificationWithIcon('success', '保存失败', err);
-            });
-        }}
-        onChange={(value: any) => {
-          setschema(value);
-        }}
-      />
-    </div>
+    <AmisEditor
+      schema={schema}
+      onSave={() => {
+        const data = { router: history.location.query.router, schema: JSON.stringify(schema) };
+        axios
+          .post('/api/admin/common/upschema', data)
+          .then((res) => {
+            console.log('res=>', res);
+            if (res.data.status != 200) {
+              openNotificationWithIcon('success', '保存失败', res.data.message);
+              return;
+            }
+            openNotificationWithIcon('success', '保存成功', '');
+            history.goBack();
+          })
+          .catch((err) => {
+            openNotificationWithIcon('success', '保存失败', err);
+          });
+      }}
+      onChange={(value: any) => {
+        setschema(value);
+      }}
+    />
   );
 };
 

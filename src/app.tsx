@@ -1,3 +1,10 @@
+/*
+ * @Author       : SpadesA.yanjuan9998@gmail.com
+ * @Date         : 2022-06-07 13:43:52
+ * @LastEditors  : SpadesA.yanjuan9998@gmail.com
+ * @LastEditTime : 2022-06-13 15:20:23
+ * @FilePath     : \myapp\src\app.tsx
+ */
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { SettingDrawer } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
@@ -66,18 +73,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         history.push(loginPath);
       }
     },
-    links: isDev
-      ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-            <LinkOutlined />
-            <span>OpenAPI 文档</span>
-          </Link>,
-          <Link to="/~docs" key="docs">
-            <BookOutlined />
-            <span>业务组件文档</span>
-          </Link>,
-        ]
-      : [],
+    links: [],
     menuHeaderRender: undefined,
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,

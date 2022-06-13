@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-07 16:51:38
+ * @LastEditTime : 2022-06-11 14:16:05
  * @FilePath     : \myapp\src\components\AmisEditor\index.tsx
  */
 import { useState } from 'react';
@@ -12,6 +12,7 @@ import 'amis/lib/themes/default.css';
 import 'amis/lib/helper.css';
 import 'amis/sdk/iconfont.css';
 import 'amis-editor/dist/style.css';
+import 'amis/lib/themes/antd.css';
 
 import { Button, Card } from 'antd';
 
@@ -55,7 +56,7 @@ function AmisEditor({ schema, onChange, onSave }: any) {
         }}
       >
         <Editor
-          theme={'cxd'}
+          theme={'antd'}
           preview={Preview}
           value={schema}
           onChange={(value: any) => onChange(value)}

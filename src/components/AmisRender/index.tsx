@@ -9,9 +9,12 @@ import 'amis/lib/themes/default.css';
 import 'amis/lib/helper.css';
 import 'amis/sdk/iconfont.css';
 import 'amis-editor/dist/style.css';
+import 'amis/lib/themes/antd.css';
 
-function AmisRender({ theme, locale, schema }: any) {
+function AmisRender({ schema }: any) {
   //let amisScoped;
+  const theme = 'antd';
+  const locale = 'zh-CN';
   return (
     <PageContainer>
       <div>

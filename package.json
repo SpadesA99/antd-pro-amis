@@ -17,7 +17,6 @@
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:prettier": "prettier -c --write \"src/**/*\" --end-of-line auto",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
-    "openapi": "umi openapi",
     "playwright": "playwright install && playwright test",
     "prepare": "husky install",
     "prettier": "prettier -c --write \"src/**/*\"",
@@ -73,8 +72,7 @@
     "react-helmet-async": "^1.2.0",
     "react-virtualized": "^9.22.3",
     "react-window": "^1.8.7",
-    "umi": "^3.5.0",
-    "use-force-update": "^1.0.8"
+    "umi": "^3.5.0"
   },
   "devDependencies": {
     "@ant-design/pro-cli": "^2.1.0",

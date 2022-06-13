@@ -2,24 +2,25 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-07 17:56:39
+ * @LastEditTime : 2022-06-13 17:44:01
  * @FilePath     : \myapp\src\pages\Render.tsx
  */
 import React, { useEffect, useState } from 'react';
 import AmisRender from '@/components/AmisRender';
 import axios from 'axios';
-import { history } from 'umi';
+import { history, useRouteMatch } from 'umi';
 import { Button } from 'antd';
 import openNotificationWithIcon from '@/utils/notification';
+import { useAccess } from 'umi';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 const Render: React.FC = () => {
   const [schema, setSchema] = useState<string>();
   const [Router, setRouter] = useState<string>(history.location.pathname);
+  const access = useAccess();
 
   useEffect(() => {
-    console.log('Router=>', Router);
     axios
       .get('/api/admin/common/schema?router=' + Router)
       .then((res) => {
@@ -43,7 +44,7 @@ const Render: React.FC = () => {
 
   return (
     <div>
-      {isDev ? (
+      {isDev && access.canAdmin ? (
         <Button
           style={{ position: 'fixed', zIndex: 999, right: '0px', top: '150px' }}
           onClick={() => {
@@ -58,7 +59,7 @@ const Render: React.FC = () => {
           Go Editer
         </Button>
       ) : null}
-      <AmisRender theme={'cxd'} locale={'zh-CN'} schema={schema} />
+      <AmisRender schema={schema} />
     </div>
   );
 };
