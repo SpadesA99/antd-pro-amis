@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:44:15
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-13 17:41:41
+ * @LastEditTime : 2022-06-14 09:41:55
  * @FilePath     : \myapp\config\routes.ts
  */
 export default [
@@ -86,6 +86,30 @@ export default [
     icon: 'smile',
     access: 'canSuperAdmin',
     component: './Render',
+  },
+  {
+    name: 'pageA',
+    path: '/pageA',
+    component: './Render',
+    roles: ['admin', 'user'],
+    access: 'auth',
+    wrappers: ['@/wrappers/auth'],
+  },
+  {
+    name: 'pageB',
+    path: '/pageB',
+    component: './Render',
+    roles: ['admin'],
+    access: 'auth',
+    wrappers: ['@/wrappers/auth'],
+  },
+  {
+    name: 'pageC',
+    path: '/pageC',
+    component: './Render',
+    roles: ['user'],
+    access: 'auth',
+    wrappers: ['@/wrappers/auth'],
   },
   {
     path: '/admin',

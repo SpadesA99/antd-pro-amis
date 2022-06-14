@@ -8,11 +8,11 @@
 
 import { notification } from 'antd';
 
-const openNotificationWithIcon = (type: NotificationType, message: string, description: string) => {
-    notification[type]({
-        message: message,
-        description: description
-    });
+const openNotificationWithIcon = (type: any, message: string, description: string) => {
+  notification[type]({
+    message: message,
+    description: description,
+  });
 };
 
 export default openNotificationWithIcon;
