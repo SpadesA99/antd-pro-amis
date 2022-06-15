@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:44:15
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-14 09:41:55
+ * @LastEditTime : 2022-06-15 10:34:21
  * @FilePath     : \myapp\config\routes.ts
  */
 export default [
@@ -36,12 +36,6 @@ export default [
     component: './Render',
   },
   {
-    path: '/Vtables',
-    name: 'Vtables',
-    icon: 'smile',
-    component: './Vtables',
-  },
-  {
     path: '/Test',
     name: 'Test',
     icon: 'smile',
@@ -56,6 +50,9 @@ export default [
   {
     path: '/product',
     name: '产品管理',
+    roles: ['admin'],
+    access: 'auth',
+    wrappers: ['@/wrappers/auth'],
     routes: [
       { path: '/product', redirect: 'product/list' },
       {
