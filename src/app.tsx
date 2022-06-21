@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import defaultSettings from '../config/defaultSettings';
 import { createFromIconfontCN } from '@ant-design/icons';
+import Render from '@/pages/Render';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -74,24 +75,48 @@ const fixMenuItemIcon = (menus: any): any => {
 //动态加载渲染组件
 const menuRender = (menu: any) => {
   for (let i = 0; i < menu.length; i++) {
-    if (menu[i].component != '') {
-      menu[i].component = dynamic({
-        loader: () => import('@/pages/Render'),
-        loading: () => <PageLoading />,
-      });
-
-      menu[i].wrappers = [
-        dynamic({
-          loader: () => import('@/wrappers/auth'),
+    if (
+      menu[i].component != '' &&
+      menu[i].component != undefined &&
+      menu[i].component != '@/pages/404'
+    ) {
+      menu[i] = {
+        component: dynamic({
+          loader: () => import('@/pages/Render'),
           loading: () => <PageLoading />,
         }),
-      ];
+        name: menu[i].name,
+        path: menu[i].path,
+        access: 'auth',
+        exact: true,
+        roles: ['superadmin', 'editor'],
+        wrappers: [
+          dynamic({
+            loader: () => import('@/wrappers/auth'),
+            loading: () => <PageLoading />,
+          }),
+        ],
+      };
     }
 
-    if (menu[i].routes != null) {
+    if (menu[i].routes != null && menu[i].routes.length > 0) {
       menu[i].routes = menuRender(menu[i].routes);
+      menu[i] = {
+        path: menu[i].path,
+        name: menu[i].name,
+        routes: [
+          ...menu[i].routes,
+          {
+            component: dynamic({
+              loader: () => import('@/pages/404'),
+              loading: () => <PageLoading />,
+            }),
+          },
+        ],
+      };
     }
   }
+  console.log('menuRender: ', menu);
   return menu;
 };
 
@@ -113,9 +138,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: a
       }
     },
     links: [],
-    menuHeaderRender: undefined,
+    //menuHeaderRender: undefined,
     menuDataRender: (menuItemProps: any) => fixMenuItemIcon(menuItemProps),
-
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
     // 增加一个 loading 的状态
@@ -146,7 +170,15 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: a
 
 let extraRoutes: any;
 
+function addRoutes(routes: any) {
+  for (let i = 0; i < extraRoutes.length; i++) {
+    routes.push(extraRoutes[i]);
+  }
+}
+
 export function patchRoutes({ routes }: any) {
+  //debugger;
+  //addRoutes(routes[0].routes);
   for (let i = 0; i < extraRoutes.length; i++) {
     routes[0].routes.push(extraRoutes[i]);
   }

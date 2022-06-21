@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:44:15
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-21 16:12:35
+ * @LastEditTime : 2022-06-21 18:21:50
  * @FilePath     : \myapp\config\routes.ts
  */
 export default [

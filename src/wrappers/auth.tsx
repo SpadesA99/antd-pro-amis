@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-13 17:56:43
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-21 12:27:21
+ * @LastEditTime : 2022-06-21 18:08:08
  * @FilePath     : \myapp\src\wrappers\auth.tsx
  */
 
