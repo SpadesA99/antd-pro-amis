@@ -2,8 +2,8 @@ import { PageContainer } from '@ant-design/pro-layout';
 import axios from 'axios';
 import copy from 'copy-to-clipboard';
 import { render as renderAmis, ToastComponent, AlertComponent } from 'amis';
-import { toast } from 'amis/lib/components/Toast';
-
+import { toast, ToastLevel } from 'amis/lib/components/Toast';
+import openNotificationWithIcon from '@/utils/notification';
 //amis style
 import 'amis/lib/themes/default.css';
 import 'amis/lib/helper.css';
@@ -81,7 +81,7 @@ function AmisRender({ schema }: any) {
             isCancel: (value: any) => (axios as any).isCancel(value),
             copy: (content) => {
               copy(content);
-              toast.success('内容已复制到粘贴板');
+              openNotificationWithIcon('success', '内容已复制到粘贴板', '');
             },
             theme,
 
@@ -108,14 +108,9 @@ function AmisRender({ schema }: any) {
             //   // 用来判断是否目标地址当前地址
             // },
 
-            // notify: (
-            //   type: 'error' | 'success' /**/,
-            //   msg: string /*提示内容*/
-            // ) => {
-            //   toast[type]
-            //     ? toast[type](msg, type === 'error' ? '系统错误' : '系统消息')
-            //     : console.warn('[Notify]', type, msg);
-            // },
+            notify: (type: ToastLevel, msg: string, conf?: any) => {
+              openNotificationWithIcon(type, msg, '');
+            },
             // alert,
             // confirm,
             // tracker: (eventTracke) => {}
