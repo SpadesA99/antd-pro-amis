@@ -7,7 +7,7 @@ import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import defaultSettings from '../config/defaultSettings';
-import { createFromIconfontCN } from '@ant-design/icons';
+import { CaretUpOutlined, createFromIconfontCN } from '@ant-design/icons';
 import Render from '@/pages/Render';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -62,8 +62,8 @@ const IconFont = createFromIconfontCN({
 const fixMenuItemIcon = (menus: any): any => {
   for (let index = 0; index < menus.length; index++) {
     const element = menus[index];
-    if (typeof element.icon === 'string') {
-      element.icon = <IconFont type={element.icon} />;
+    if (typeof element.icon === 'string' && element.icon.indexOf('icon-') === 0) {
+      element.icon = <IconFont type={element.icon} />; //<CaretUpOutlined />// <IconFont type={element.icon} />;
     }
     element.children && element.children.length > 0
       ? (element.children = fixMenuItemIcon(element.children))
@@ -87,6 +87,7 @@ const menuRender = (menu: any) => {
         }),
         name: menu[i].name,
         path: menu[i].path,
+        icon: menu[i].icon,
         access: 'auth',
         exact: true,
         roles: ['superadmin', 'editor'],
@@ -104,6 +105,7 @@ const menuRender = (menu: any) => {
       menu[i] = {
         path: menu[i].path,
         name: menu[i].name,
+        icon: menu[i].icon,
         routes: [
           ...menu[i].routes,
           {
@@ -114,9 +116,12 @@ const menuRender = (menu: any) => {
           },
         ],
       };
+      // if (menu[i].icon != "" && menu[i].icon != undefined) {
+      //   menu[i].icon = menu[i].icon;
+      // }
     }
   }
-  console.log('menuRender: ', menu);
+  //console.log('menuRender: ', menu);
   return menu;
 };
 
