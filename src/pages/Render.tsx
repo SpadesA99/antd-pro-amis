@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-21 14:09:20
+ * @LastEditTime : 2022-06-21 16:11:55
  * @FilePath     : \myapp\src\pages\Render.tsx
  */
 import React, { useEffect, useState } from 'react';
@@ -42,19 +42,19 @@ const Render: React.FC = () => {
 
   return (
     <div>
-      {access.auth({ roles: ['superadmin'] }) ? (
+      {access.auth({ roles: ['editor'] }) ? (
         <Button
           style={{ position: 'fixed', zIndex: 999, right: '0px', top: '150px' }}
           onClick={() => {
             history.push({
-              pathname: '/Editer',
+              pathname: '/editor',
               query: {
                 router: Router,
               },
             });
           }}
         >
-          Go Editer
+          Go Editor
         </Button>
       ) : null}
       <AmisRender schema={schema} />

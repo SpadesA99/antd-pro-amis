@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:44:15
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-21 14:01:21
+ * @LastEditTime : 2022-06-21 16:12:35
  * @FilePath     : \myapp\config\routes.ts
  */
 export default [
@@ -15,7 +15,7 @@ export default [
     ],
   },
   {
-    path: '/Editer',
+    path: '/editor',
     hideInMenu: true,
     layout: false,
     roles: ['superadmin'],

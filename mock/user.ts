@@ -20,10 +20,10 @@ const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
  * current user access， if is '', user need login
  * 如果是 pro 的预览，默认是有权限的
  */
-let access = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site' ? 'admin' : '';
+let access: any[] = [];
 
 const getAccess = () => {
-  return access;
+  return access.join(',');
 };
 
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
@@ -123,48 +123,48 @@ export default {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'superadmin',
+        currentAuthority: ['superadmin', 'editor'],
       });
-      access = 'superadmin';
+      access = ['superadmin', 'editor'];
       return;
     }
     if (password === '1' && username === 'admin') {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'admin',
+        currentAuthority: ['admin'],
       });
-      access = 'admin';
+      access = ['admin'];
       return;
     }
     if (password === '1' && username === 'user') {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'user',
+        currentAuthority: ['user'],
       });
-      access = 'user';
+      access = ['user'];
       return;
     }
     if (type === 'mobile') {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'admin',
+        currentAuthority: ['admin'],
       });
-      access = 'admin';
+      access = ['admin'];
       return;
     }
 
     res.send({
       status: 'error',
       type,
-      currentAuthority: 'guest',
+      currentAuthority: ['guest'],
     });
-    access = 'guest';
+    access = ['guest'];
   },
   'POST /api/login/outLogin': (req: Request, res: Response) => {
-    access = '';
+    access = [];
     res.send({ data: {}, success: true });
   },
   'POST /api/register': (req: Request, res: Response) => {
