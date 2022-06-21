@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:44:15
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-13 15:20:10
+ * @LastEditTime : 2022-06-21 10:29:25
  * @FilePath     : \myapp\config\config.ts
  */
 // https://umijs.org/config/

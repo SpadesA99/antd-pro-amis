@@ -2,18 +2,16 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-13 18:16:52
+ * @LastEditTime : 2022-06-21 14:09:20
  * @FilePath     : \myapp\src\pages\Render.tsx
  */
 import React, { useEffect, useState } from 'react';
 import AmisRender from '@/components/AmisRender';
 import axios from 'axios';
-import { history, useRouteMatch } from 'umi';
+import { history, useModel, useRouteMatch } from 'umi';
 import { Button } from 'antd';
 import openNotificationWithIcon from '@/utils/notification';
 import { useAccess } from 'umi';
-
-const isDev = process.env.NODE_ENV === 'development';
 
 const Render: React.FC = () => {
   const [schema, setSchema] = useState<string>();
@@ -22,7 +20,7 @@ const Render: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get('/api/admin/common/schema?router=' + Router)
+      .get('/api/v1/get-schema?router=' + Router)
       .then((res) => {
         if (res.data.status != 200) {
           openNotificationWithIcon('info', '失败', res.data.message);
@@ -44,7 +42,7 @@ const Render: React.FC = () => {
 
   return (
     <div>
-      {isDev && access.canAdmin ? (
+      {access.auth({ roles: ['superadmin'] }) ? (
         <Button
           style={{ position: 'fixed', zIndex: 999, right: '0px', top: '150px' }}
           onClick={() => {

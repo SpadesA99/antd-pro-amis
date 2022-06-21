@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-13 17:48:55
+ * @LastEditTime : 2022-06-15 15:59:31
  * @FilePath     : \myapp\src\pages\Editer.tsx
  */
 import React, { useEffect, useState } from 'react';
@@ -19,9 +19,16 @@ const Editer: React.FC = () => {
   );
 
   useEffect(() => {
+    if (
+      history == undefined ||
+      history.location == undefined ||
+      history.location.query == undefined
+    ) {
+      return;
+    }
     if (history.location.query.router != undefined || history.location.query.router != '') {
       axios
-        .get('/api/admin/common/schema?router=' + history.location.query.router)
+        .get('/api/v1/get-schema?router=' + history.location.query.router)
         .then((res) => {
           if (res.data.status != 200) {
             alert(res.data.message);
@@ -39,9 +46,16 @@ const Editer: React.FC = () => {
     <AmisEditor
       schema={schema}
       onSave={() => {
+        if (
+          history == undefined ||
+          history.location == undefined ||
+          history.location.query == undefined
+        ) {
+          return;
+        }
         const data = { router: history.location.query.router, schema: JSON.stringify(schema) };
         axios
-          .post('/api/admin/common/upschema', data)
+          .post('/api/v1/update-schema', data)
           .then((res) => {
             console.log('res=>', res);
             if (res.data.status != 200) {

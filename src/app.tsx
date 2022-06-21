@@ -1,20 +1,13 @@
-/*
- * @Author       : SpadesA.yanjuan9998@gmail.com
- * @Date         : 2022-06-07 13:43:52
- * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-13 15:20:23
- * @FilePath     : \myapp\src\app.tsx
- */
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { SettingDrawer } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
-import type { RunTimeLayoutConfig } from 'umi';
-import { history, Link } from 'umi';
+import { dynamic, RunTimeLayoutConfig } from 'umi';
+import { history } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
+import { createFromIconfontCN } from '@ant-design/icons';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -57,14 +50,60 @@ export async function getInitialState(): Promise<{
   };
 }
 
+const IconFont = createFromIconfontCN({
+  scriptUrl: [
+    '//at.alicdn.com/t/font_1788044_0dwu4guekcwr.js', // icon-javascript, icon-java, icon-shoppingcart (overrided)
+    '//at.alicdn.com/t/font_1788592_a5xf2bdic3u.js', // icon-shoppingcart, icon-python
+  ],
+});
+
+//替换菜单图标
+const fixMenuItemIcon = (menus: any): any => {
+  for (let index = 0; index < menus.length; index++) {
+    const element = menus[index];
+    if (typeof element.icon === 'string') {
+      element.icon = <IconFont type={element.icon} />;
+    }
+    element.children && element.children.length > 0
+      ? (element.children = fixMenuItemIcon(element.children))
+      : null;
+  }
+  return menus;
+};
+
+//动态加载渲染组件
+const menuRender = (menu: any) => {
+  for (let i = 0; i < menu.length; i++) {
+    if (menu[i].component != '') {
+      menu[i].component = dynamic({
+        loader: () => import('@/pages/Render'),
+        loading: () => <PageLoading />,
+      });
+
+      menu[i].wrappers = [
+        dynamic({
+          loader: () => import('@/wrappers/auth'),
+          loading: () => <PageLoading />,
+        }),
+      ];
+    }
+
+    if (menu[i].routes != null) {
+      menu[i].routes = menuRender(menu[i].routes);
+    }
+  }
+  return menu;
+};
+
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
-export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }: any) => {
   return {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
       content: initialState?.currentUser?.name,
     },
+
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
@@ -75,6 +114,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     links: [],
     menuHeaderRender: undefined,
+    menuDataRender: (menuItemProps: any) => fixMenuItemIcon(menuItemProps),
+
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
     // 增加一个 loading 的状态
@@ -89,7 +130,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
               enableDarkTheme
               settings={initialState?.settings}
               onSettingChange={(settings) => {
-                setInitialState((preInitialState) => ({
+                setInitialState((preInitialState: any) => ({
                   ...preInitialState,
                   settings,
                 }));
@@ -102,3 +143,21 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     ...initialState?.settings,
   };
 };
+
+let extraRoutes: any;
+
+export function patchRoutes({ routes }: any) {
+  for (let i = 0; i < extraRoutes.length; i++) {
+    routes[0].routes.push(extraRoutes[i]);
+  }
+}
+
+export function render(oldRender: any) {
+  fetch('/api/v1/get-menu-tree?roles=superadmin')
+    .then((res) => res.json())
+    .then((res) => {
+      extraRoutes = menuRender(res.data);
+
+      oldRender();
+    });
+}
