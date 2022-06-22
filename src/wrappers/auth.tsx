@@ -6,8 +6,7 @@
  * @FilePath     : \myapp\src\wrappers\auth.tsx
  */
 
-import { useAccess } from 'umi';
-import { useModel } from 'umi';
+import { useAccess, useModel } from 'umi';
 
 export default (props: any) => {
   const { initialState } = useModel('@@initialState');

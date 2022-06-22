@@ -5,14 +5,14 @@
  * @LastEditTime : 2022-06-11 14:16:05
  * @FilePath     : \myapp\src\components\AmisEditor\index.tsx
  */
-import { useState } from 'react';
 import { Editor } from 'amis-editor';
+import { useState } from 'react';
 //amis style
-import 'amis/lib/themes/default.css';
-import 'amis/lib/helper.css';
-import 'amis/sdk/iconfont.css';
 import 'amis-editor/dist/style.css';
+import 'amis/lib/helper.css';
 import 'amis/lib/themes/antd.css';
+import 'amis/lib/themes/default.css';
+import 'amis/sdk/iconfont.css';
 
 import { Button, Card } from 'antd';
 

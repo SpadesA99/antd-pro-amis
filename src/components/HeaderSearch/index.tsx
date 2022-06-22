@@ -1,8 +1,8 @@
 import { SearchOutlined } from '@ant-design/icons';
 import type { InputRef } from 'antd';
 import { AutoComplete, Input } from 'antd';
-import useMergedState from 'rc-util/es/hooks/useMergedState';
 import type { AutoCompleteProps } from 'antd/es/auto-complete';
+import useMergedState from 'rc-util/es/hooks/useMergedState';
 import React, { useRef } from 'react';
 
 import classNames from 'classnames';

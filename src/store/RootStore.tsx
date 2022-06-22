@@ -6,8 +6,7 @@
  * @FilePath     : \myapp\src\store\rootstore.tsx
  */
 
-import AmisStore from "./AmisStore";
-
+import AmisStore from './AmisStore';
 
 class RootStore {
   amisStore: AmisStore;

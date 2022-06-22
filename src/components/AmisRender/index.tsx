@@ -1,15 +1,15 @@
+import openNotificationWithIcon from '@/utils/notification';
 import { PageContainer } from '@ant-design/pro-layout';
+import { AlertComponent, render as renderAmis, ToastComponent } from 'amis';
+import { ToastLevel } from 'amis/lib/components/Toast';
 import axios from 'axios';
 import copy from 'copy-to-clipboard';
-import { render as renderAmis, ToastComponent, AlertComponent } from 'amis';
-import { toast, ToastLevel } from 'amis/lib/components/Toast';
-import openNotificationWithIcon from '@/utils/notification';
 //amis style
-import 'amis/lib/themes/default.css';
-import 'amis/lib/helper.css';
-import 'amis/sdk/iconfont.css';
 import 'amis-editor/dist/style.css';
+import 'amis/lib/helper.css';
 import 'amis/lib/themes/antd.css';
+import 'amis/lib/themes/default.css';
+import 'amis/sdk/iconfont.css';
 
 function AmisRender({ schema }: any) {
   //let amisScoped;

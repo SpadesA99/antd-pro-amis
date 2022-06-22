@@ -1,38 +1,37 @@
-
-import { makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable, observable } from 'mobx';
 
 class AmisStore {
-    rootStore: any;
+  rootStore: any;
 
-    todos = [];
+  todos = [];
 
-    @observable
-    schema = {
-        type: "page",
-        title: "Hello world2255522",
-        initApi: "/v1api/list",
-        body: "date is ${code}"
-    };
+  @observable
+  schema = {
+    type: 'page',
+    title: 'Hello world2255522',
+    initApi: '/v1api/list',
+    body: 'date is ${code}',
+  };
 
-    preview = false;
-    isMobile = false;
+  preview = false;
+  isMobile = false;
 
-    constructor(rootStore: any) {
-        makeAutoObservable(this, rootStore);
-        this.rootStore = rootStore;
-    }
+  constructor(rootStore: any) {
+    makeAutoObservable(this, rootStore);
+    this.rootStore = rootStore;
+  }
 
-    updateSchema(schema: any) {
-        console.log("updateSchema", schema);
-        this.schema = schema;
-    }
+  updateSchema(schema: any) {
+    console.log('updateSchema', schema);
+    this.schema = schema;
+  }
 
-    updateModel() {
-        this.isMobile = !this.isMobile;
-    }
-    updatePreview() {
-        this.preview = !this.preview;
-    }
+  updateModel() {
+    this.isMobile = !this.isMobile;
+  }
+  updatePreview() {
+    this.preview = !this.preview;
+  }
 }
 
 export default AmisStore;

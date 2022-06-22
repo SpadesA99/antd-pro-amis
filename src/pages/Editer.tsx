@@ -5,11 +5,11 @@
  * @LastEditTime : 2022-06-15 15:59:31
  * @FilePath     : \myapp\src\pages\Editer.tsx
  */
-import React, { useEffect, useState } from 'react';
 import AmisEditor from '@/components/AmisEditor';
-import { history } from 'umi';
-import axios from 'axios';
 import openNotificationWithIcon from '@/utils/notification';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { history } from 'umi';
 
 const Editer: React.FC = () => {
   const [schema, setschema] = useState(

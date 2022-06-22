@@ -5,13 +5,12 @@
  * @LastEditTime : 2022-06-22 16:44:02
  * @FilePath     : \myapp\src\pages\Render.tsx
  */
-import React, { useEffect, useState } from 'react';
 import AmisRender from '@/components/AmisRender';
-import axios from 'axios';
-import { history } from 'umi';
-import { Button } from 'antd';
 import openNotificationWithIcon from '@/utils/notification';
-import { useAccess } from 'umi';
+import { Button } from 'antd';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { history, useAccess } from 'umi';
 
 const Render: React.FC = () => {
   const [schema, setSchema] = useState<string>();

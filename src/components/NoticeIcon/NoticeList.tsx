@@ -1,7 +1,7 @@
 import { Avatar, List } from 'antd';
 
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 import styles from './NoticeList.less';
 
 export type NoticeIconTabProps = {
