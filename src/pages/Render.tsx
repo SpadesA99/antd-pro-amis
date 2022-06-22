@@ -2,13 +2,13 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-22 15:59:59
+ * @LastEditTime : 2022-06-22 16:44:02
  * @FilePath     : \myapp\src\pages\Render.tsx
  */
 import React, { useEffect, useState } from 'react';
 import AmisRender from '@/components/AmisRender';
 import axios from 'axios';
-import { history, useModel, useRouteMatch } from 'umi';
+import { history } from 'umi';
 import { Button } from 'antd';
 import openNotificationWithIcon from '@/utils/notification';
 import { useAccess } from 'umi';
