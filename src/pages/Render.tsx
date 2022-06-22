@@ -2,7 +2,7 @@
  * @Author       : SpadesA.yanjuan9998@gmail.com
  * @Date         : 2022-06-07 13:43:53
  * @LastEditors  : SpadesA.yanjuan9998@gmail.com
- * @LastEditTime : 2022-06-21 16:11:55
+ * @LastEditTime : 2022-06-22 15:59:59
  * @FilePath     : \myapp\src\pages\Render.tsx
  */
 import React, { useEffect, useState } from 'react';
@@ -43,19 +43,35 @@ const Render: React.FC = () => {
   return (
     <div>
       {access.auth({ roles: ['editor'] }) ? (
-        <Button
-          style={{ position: 'fixed', zIndex: 999, right: '0px', top: '150px' }}
-          onClick={() => {
-            history.push({
-              pathname: '/editor',
-              query: {
-                router: Router,
-              },
-            });
-          }}
-        >
-          Go Editor
-        </Button>
+        <div>
+          <Button
+            style={{ position: 'fixed', zIndex: 999, right: '0px', top: '150px' }}
+            onClick={() => {
+              history.push({
+                pathname: '/editor',
+                query: {
+                  router: Router,
+                },
+              });
+            }}
+          >
+            Go Editor
+          </Button>
+          <Button
+            style={{ position: 'fixed', zIndex: 999, right: '0px', top: '185px' }}
+            onClick={() => {
+              history.push({
+                pathname: Router,
+                query: {
+                  amisDebug: '1',
+                },
+              });
+              history.go(0);
+            }}
+          >
+            DEBUG
+          </Button>
+        </div>
       ) : null}
       <AmisRender schema={schema} />
     </div>
