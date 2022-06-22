@@ -1,13 +1,11 @@
-import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
-import { SettingDrawer } from '@ant-design/pro-layout';
-import { PageLoading } from '@ant-design/pro-layout';
-import { dynamic, RunTimeLayoutConfig } from 'umi';
-import { history } from 'umi';
-import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-import defaultSettings from '../config/defaultSettings';
+import RightContent from '@/components/RightContent';
 import { createFromIconfontCN } from '@ant-design/icons';
+import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
+import { PageLoading, SettingDrawer } from '@ant-design/pro-layout';
+import { dynamic, history, RunTimeLayoutConfig } from 'umi';
+import defaultSettings from '../config/defaultSettings';
+import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -89,7 +87,7 @@ const menuRender = (menu: any) => {
         icon: menu[i].icon,
         access: 'auth',
         exact: true,
-        roles: ['superadmin', 'editor'],
+        roles: menu[i].roles,
         wrappers: [
           dynamic({
             loader: () => import('@/wrappers/auth'),
