@@ -28,3 +28,5 @@ npm start
 #### 后端使用 golang 实现
 
 项目地址 https://github.com/SpadesA99/antd-pro-amis-server.git
+
+参考 https://blog.jzserver.com/2022/06/13/antd-pro%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/
