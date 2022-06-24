@@ -1,57 +1,26 @@
-# Ant Design Pro
+### 基于 antd pro v5 + amis 实现的动态菜单以及动态路由
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
-
-## Environment Prepare
-
-Install `node_modules`:
+#### 启动
 
 ```bash
 npm install
-```
-
-or
-
-```bash
-yarn
-```
-
-## Provided Scripts
-
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
-
-Scripts provided in `package.json`. It's safe to modify or add additional script:
-
-### Start project
-
-```bash
 npm start
 ```
 
-### Build project
+#### 角色定义
 
-```bash
-npm run build
-```
+![](.//images//20220624152156.png)
 
-### Check code style
+#### 菜单生成
 
-```bash
-npm run lint
-```
+支持无限级菜单，动态菜单生成，菜单权限控制，服务器加载菜单树
 
-You can also use script to auto fix some lint error:
+![](.//images//20220624152519.png)
 
-```bash
-npm run lint:fix
-```
+![](.//images//20220624152632.png)
 
-### Test code
+![](.//images//20220624152717.png)
 
-```bash
-npm test
-```
+后端使用 golang 实现
 
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+项目地址 https://github.com/SpadesA99/antd-pro-amis-server.git
